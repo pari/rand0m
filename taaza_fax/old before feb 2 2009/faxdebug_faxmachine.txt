@@ -1,0 +1,91 @@
+*CLI> [Nov 30 18:49:35]     -- Starting simple switch on 'DAHDI/1-1'
+[Nov 30 18:49:36]     -- Executing [s@DID_trunk_1:1] Goto("DAHDI/1-1", "voicemenu-custom-1,s,1") in new stack
+[Nov 30 18:49:36]     -- Goto (voicemenu-custom-1,s,1)
+[Nov 30 18:49:36]     -- Executing [s@voicemenu-custom-1:1] NoOp("DAHDI/1-1", "New_Incoming_FAX") in new stack
+[Nov 30 18:49:36]     -- Executing [s@voicemenu-custom-1:2] Answer("DAHDI/1-1", "") in new stack
+[Nov 30 18:49:36]     -- Executing [s@voicemenu-custom-1:3] Wait("DAHDI/1-1", "7") in new stack
+[Nov 30 18:49:43]     -- Executing [s@voicemenu-custom-1:4] Set("DAHDI/1-1", "DateTime=20091130_1849") in new stack
+[Nov 30 18:49:43]     -- Executing [s@voicemenu-custom-1:5] Set("DAHDI/1-1", "THISFAXFILENAME=fax_20091130_1849") in new stack
+[Nov 30 18:49:43]     -- Executing [s@voicemenu-custom-1:6] Set("DAHDI/1-1", "CallerIDString="EXTERNAL" <004027950038>") in new stack
+[Nov 30 18:49:43]     -- Executing [s@voicemenu-custom-1:7] ReceiveFAX("DAHDI/1-1", "/recvd_faxes/fax_20091130_1849.tiff") in new stack
+[Nov 30 18:49:43]     -- Channel 'DAHDI/1-1' receiving fax '/recvd_faxes/fax_20091130_1849.tiff'
+[Nov 30 18:49:43]     -- Channel 'DAHDI/1-1' fax session '1', [ 000.002200 ], STAT_EVT_STRT_RX       st: IDLE         rt: IDLENSRX
+[Nov 30 18:49:43]     -- Channel 'DAHDI/1-1' fax session '1', [ 000.002274 ], STAT_EVT_RX_HW_RDY     st: WT_RX_HW_RDY rt: RRDYNHRY
+[Nov 30 18:49:43]     -- Channel 'DAHDI/1-1' fax session '1', [ 000.002366 ], STAT_INFO_CSI
+[Nov 30 18:49:43]     -- Channel 'DAHDI/1-1' fax session '1', [ 000.002435 ], STAT_INFO_DIS
+[Nov 30 18:49:43]     -- Channel 'DAHDI/1-1' fax session '1' started
+[Nov 30 18:49:43]        > Channel 'DAHDI/1-1' fax session '1', [ 000.073419 ], stack sent 6 frames (120 ms) of energy.
+[Nov 30 18:49:43]        > Channel 'DAHDI/1-1' fax session '1', [ 000.113420 ], stack sent 2 frames (40 ms) of silence.
+[Nov 30 18:49:46]        > Channel 'DAHDI/1-1' fax session '1', [ 003.133532 ], stack sent 151 frames (3020 ms) of energy.
+[Nov 30 18:49:46]        > Channel 'DAHDI/1-1' fax session '1', [ 003.173544 ], stack sent 2 frames (40 ms) of silence.
+[Nov 30 18:49:48]     -- Channel 'DAHDI/1-1' fax session '1', [ 005.193601 ], STAT_EVT_TX_V21_DONE   st: WT_DIS_RSP   rt: WDSRNT21
+[Nov 30 18:49:49]        > Channel 'DAHDI/1-1' fax session '1', [ 005.513605 ], stack sent 117 frames (2340 ms) of energy.
+[Nov 30 18:49:52]     -- Channel 'DAHDI/1-1' fax session '1', [ 008.453692 ], STAT_EVT_T4_EXP        st: WT_DIS_RSP   rt: XXXXNT4X
+[Nov 30 18:49:52]     -- Channel 'DAHDI/1-1' fax session '1', [ 008.453728 ], STAT_EVT_FSC_ERR       st: WT_DIS_RSP   rt: RXXXNFRX
+[Nov 30 18:49:52]     -- Channel 'DAHDI/1-1' fax session '1', [ 008.453842 ], STAT_INFO_CSI
+[Nov 30 18:49:52]     -- Channel 'DAHDI/1-1' fax session '1', [ 008.454023 ], STAT_INFO_DIS
+[Nov 30 18:49:52]        > Channel 'DAHDI/1-1' fax session '1', [ 008.613738 ], stack sent 155 frames (3100 ms) of silence.
+[Nov 30 18:49:54]     -- Channel 'DAHDI/1-1' fax session '1', [ 010.613795 ], STAT_EVT_TX_V21_DONE   st: WT_DIS_RSP   rt: WDSRNT21
+[Nov 30 18:49:54]        > Channel 'DAHDI/1-1' fax session '1', [ 010.953822 ], stack sent 117 frames (2340 ms) of energy.
+[Nov 30 18:49:57]     -- Channel 'DAHDI/1-1' fax session '1', [ 013.953896 ], STAT_EVT_T4_EXP        st: WT_DIS_RSP   rt: XXXXNT4X
+[Nov 30 18:49:57]     -- Channel 'DAHDI/1-1' fax session '1', [ 013.953931 ], STAT_EVT_FSC_ERR       st: WT_DIS_RSP   rt: RXXXNFRX
+[Nov 30 18:49:57]     -- Channel 'DAHDI/1-1' fax session '1', [ 013.954043 ], STAT_INFO_CSI
+[Nov 30 18:49:57]     -- Channel 'DAHDI/1-1' fax session '1', [ 013.954219 ], STAT_INFO_DIS
+[Nov 30 18:49:57]        > Channel 'DAHDI/1-1' fax session '1', [ 014.113940 ], stack sent 158 frames (3160 ms) of silence.
+[Nov 30 18:49:59]     -- Channel 'DAHDI/1-1' fax session '1', [ 016.113999 ], STAT_EVT_TX_V21_DONE   st: WT_DIS_RSP   rt: WDSRNT21
+[Nov 30 18:50:00]        > Channel 'DAHDI/1-1' fax session '1', [ 016.454032 ], stack sent 117 frames (2340 ms) of energy.
+[Nov 30 18:50:01]        > Channel 'DAHDI/1-1' fax session '1', [ 018.234034 ], channel sent 911 frames (18220 ms) of silence.
+[Nov 30 18:50:02]        > Channel 'DAHDI/1-1' fax session '1', [ 018.754053 ], channel sent 26 frames (520 ms) of energy.
+[Nov 30 18:50:03]     -- Channel 'DAHDI/1-1' fax session '1', [ 019.454101 ], STAT_EVT_T4_EXP        st: WT_DIS_RSP   rt: XXXXNT4X
+[Nov 30 18:50:03]     -- Channel 'DAHDI/1-1' fax session '1', [ 019.454135 ], STAT_EVT_FSC_ERR       st: WT_DIS_RSP   rt: RXXXNFRX
+[Nov 30 18:50:03]     -- Channel 'DAHDI/1-1' fax session '1', [ 019.454240 ], STAT_INFO_CSI
+[Nov 30 18:50:03]     -- Channel 'DAHDI/1-1' fax session '1', [ 019.454422 ], STAT_INFO_DIS
+[Nov 30 18:50:03]        > Channel 'DAHDI/1-1' fax session '1', [ 019.614147 ], stack sent 158 frames (3160 ms) of silence.
+[Nov 30 18:50:05]     -- Channel 'DAHDI/1-1' fax session '1', [ 021.614206 ], STAT_EVT_TX_V21_DONE   st: WT_DIS_RSP   rt: WDSRNT21
+[Nov 30 18:50:05]        > Channel 'DAHDI/1-1' fax session '1', [ 021.834167 ], channel sent 154 frames (3080 ms) of silence.
+[Nov 30 18:50:05]        > Channel 'DAHDI/1-1' fax session '1', [ 021.954231 ], stack sent 117 frames (2340 ms) of energy.
+[Nov 30 18:50:05]        > Channel 'DAHDI/1-1' fax session '1', [ 022.354187 ], channel sent 26 frames (520 ms) of energy.
+[Nov 30 18:50:08]     -- Channel 'DAHDI/1-1' fax session '1', [ 024.954304 ], STAT_EVT_T4_EXP        st: WT_DIS_RSP   rt: XXXXNT4X
+[Nov 30 18:50:08]     -- Channel 'DAHDI/1-1' fax session '1', [ 024.954340 ], STAT_EVT_FSC_ERR       st: WT_DIS_RSP   rt: RXXXNFRX
+[Nov 30 18:50:08]     -- Channel 'DAHDI/1-1' fax session '1', [ 024.954450 ], STAT_INFO_CSI
+[Nov 30 18:50:08]     -- Channel 'DAHDI/1-1' fax session '1', [ 024.954629 ], STAT_INFO_DIS
+[Nov 30 18:50:08]        > Channel 'DAHDI/1-1' fax session '1', [ 025.114350 ], stack sent 158 frames (3160 ms) of silence.
+[Nov 30 18:50:09]        > Channel 'DAHDI/1-1' fax session '1', [ 025.434301 ], channel sent 154 frames (3080 ms) of silence.
+[Nov 30 18:50:09]        > Channel 'DAHDI/1-1' fax session '1', [ 025.954320 ], channel sent 26 frames (520 ms) of energy.
+[Nov 30 18:50:10]     -- Channel 'DAHDI/1-1' fax session '1', [ 027.114410 ], STAT_EVT_TX_V21_DONE   st: WT_DIS_RSP   rt: WDSRNT21
+[Nov 30 18:50:11]        > Channel 'DAHDI/1-1' fax session '1', [ 027.454436 ], stack sent 117 frames (2340 ms) of energy.
+[Nov 30 18:50:12]        > Channel 'DAHDI/1-1' fax session '1', [ 029.014437 ], channel sent 153 frames (3060 ms) of silence.
+[Nov 30 18:50:13]        > Channel 'DAHDI/1-1' fax session '1', [ 029.534454 ], channel sent 26 frames (520 ms) of energy.
+[Nov 30 18:50:14]     -- Channel 'DAHDI/1-1' fax session '1', [ 030.454512 ], STAT_EVT_T4_EXP        st: WT_DIS_RSP   rt: XXXXNT4X
+[Nov 30 18:50:14]     -- Channel 'DAHDI/1-1' fax session '1', [ 030.454545 ], STAT_EVT_FSC_ERR       st: WT_DIS_RSP   rt: RXXXNFRX
+[Nov 30 18:50:14]     -- Channel 'DAHDI/1-1' fax session '1', [ 030.454651 ], STAT_INFO_CSI
+[Nov 30 18:50:14]     -- Channel 'DAHDI/1-1' fax session '1', [ 030.454830 ], STAT_INFO_DIS
+[Nov 30 18:50:14]        > Channel 'DAHDI/1-1' fax session '1', [ 030.614555 ], stack sent 158 frames (3160 ms) of silence.
+[Nov 30 18:50:16]     -- Channel 'DAHDI/1-1' fax session '1', [ 032.614622 ], STAT_EVT_TX_V21_DONE   st: WT_DIS_RSP   rt: WDSRNT21
+[Nov 30 18:50:16]        > Channel 'DAHDI/1-1' fax session '1', [ 032.634580 ], channel sent 155 frames (3100 ms) of silence.
+[Nov 30 18:50:16]        > Channel 'DAHDI/1-1' fax session '1', [ 032.954640 ], stack sent 117 frames (2340 ms) of energy.
+[Nov 30 18:50:16]        > Channel 'DAHDI/1-1' fax session '1', [ 033.134587 ], channel sent 25 frames (500 ms) of energy.
+[Nov 30 18:50:19]     -- Channel 'DAHDI/1-1' fax session '1', [ 035.954715 ], STAT_EVT_T4_EXP        st: WT_DIS_RSP   rt: XXXXNT4X
+[Nov 30 18:50:19]     -- Channel 'DAHDI/1-1' fax session '1', [ 035.954751 ], STAT_EVT_FSC_ERR       st: WT_DIS_RSP   rt: RXXXNFRX
+[Nov 30 18:50:19]     -- Channel 'DAHDI/1-1' fax session '1', [ 035.954876 ], STAT_INFO_CSI
+[Nov 30 18:50:19]     -- Channel 'DAHDI/1-1' fax session '1', [ 035.955056 ], STAT_INFO_DIS
+[Nov 30 18:50:19]        > Channel 'DAHDI/1-1' fax session '1', [ 036.114759 ], stack sent 158 frames (3160 ms) of silence.
+[Nov 30 18:50:19]        > Channel 'DAHDI/1-1' fax session '1', [ 036.214703 ], channel sent 154 frames (3080 ms) of silence.
+[Nov 30 18:50:20]        > Channel 'DAHDI/1-1' fax session '1', [ 036.734722 ], channel sent 26 frames (520 ms) of energy.
+[Nov 30 18:50:21]     -- Channel 'DAHDI/1-1' fax session '1', [ 038.114819 ], STAT_EVT_TX_V21_DONE   st: WT_DIS_RSP   rt: WDSRNT21
+[Nov 30 18:50:22]        > Channel 'DAHDI/1-1' fax session '1', [ 038.454846 ], stack sent 117 frames (2340 ms) of energy.
+[Nov 30 18:50:23]        > Channel 'DAHDI/1-1' fax session '1', [ 039.814838 ], channel sent 154 frames (3080 ms) of silence.
+[Nov 30 18:50:23]     -- Channel 'DAHDI/1-1' fax session '1', [ 039.954864 ], STAT_EVT_T1_EXP        st: WT_DIS_RSP   rt: WDSRNT1X
+[Nov 30 18:50:23]     -- Channel 'DAHDI/1-1' fax session '1', [ 039.954900 ], STAT_FRM_DCN
+[Nov 30 18:50:23]        > Channel 'DAHDI/1-1' fax session '1', [ 040.114910 ], stack sent 83 frames (1660 ms) of silence.
+[Nov 30 18:50:23]        > Channel 'DAHDI/1-1' fax session '1', [ 040.334856 ], channel sent 26 frames (520 ms) of energy.
+[Nov 30 18:50:24]     -- Channel 'DAHDI/1-1' fax session '1', [ 041.154941 ], STAT_EVT_TX_V21_DONE   st: SEND_DCN     rt: XDCNNT21
+[Nov 30 18:50:25]        > Channel 'DAHDI/1-1' fax session '1', [ 041.474948 ], stack sent 68 frames (1360 ms) of energy.
+[Nov 30 18:50:26]        > Channel 'DAHDI/1-1' fax session '1', [ 043.394968 ], channel sent 153 frames (3060 ms) of silence.
+[Nov 30 18:50:27]        > Channel 'DAHDI/1-1' fax session '1', [ 043.934987 ], channel sent 27 frames (540 ms) of energy.
+[Nov 30 18:50:30]        > Channel 'DAHDI/1-1' fax session '1', [ 046.995102 ], channel sent 153 frames (3060 ms) of silence.
+[Nov 30 18:50:31]        > Channel 'DAHDI/1-1' fax session '1', [ 047.515121 ], channel sent 26 frames (520 ms) of energy.
+[Nov 30 18:50:31]     -- Channel 'DAHDI/1-1' fax session '1', [ 047.638108 ], STAT_EVT_HW_CLOSE      st: WT_HW_CLS    rt: WCLSNCLS
+[Nov 30 18:50:31]     -- Channel 'DAHDI/1-1' fax session '1', [ 047.638271 ], STAT_SES_COMPLETE
+[Nov 30 18:50:31]     -- Channel 'DAHDI/1-1' fax session '1' is complete, result: 'FAILED' (FAX_NO_FAX), error: 'T1_TIMEOUT', pages: 0, resolution: 'unknown', transfer rate: '2400', remoteSID: ''
+[Nov 30 18:50:31]     -- Hungup 'DAHDI/1-1'

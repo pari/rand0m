@@ -1,0 +1,17 @@
+exten => s,1,NoOp(New_Incoming_FAX)
+exten => s,2,Answer()
+exten => s,3,Wait(3)
+exten => s,n,Set(DateTime=${STRFTIME(${EPOCH},,%Y%m%d)}_${STRFTIME(${EPOCH},,%H%M)}) 
+exten => s,n,SetVar(THISFAXFILENAME=fax_${DateTime})
+exten => s,n,Set(CallerIDString=${CALLERID(all)})
+exten => s,n,ReceiveFAX(/recvd_faxes/${THISFAXFILENAME})
+exten => s,n,System( tiff2pdf -o ${THISFAXFILENAME}.pdf ${THISFAXFILENAME}.tiff )
+exten => s,3,Wait(1)
+exten => s,n,AGI(email_fax.php)
+exten => s,n,Hangup
+
+; Todo
+; Install tiff2pdf
+; upload all php files here to agi-bin &  'chmod +x'
+; mkdir /recvd_faxes/
+; Upload this menu

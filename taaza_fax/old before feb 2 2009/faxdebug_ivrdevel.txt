@@ -1,0 +1,47 @@
+[voicemenu-custom-1]   
+exten => s,1,NoOp(New_Incoming_FAX)
+exten => s,2,Answer()
+exten => s,3,Wait(3)
+exten => s,n,Set(GLOBAL(FAXCOUNT)=$[ ${GLOBAL(FAXCOUNT)} + 1 ])
+exten => s,n,Set(FAXCOUNT=${GLOBAL(FAXCOUNT)})
+exten => s,n,Set(FAXFILE=fax-${FAXCOUNT}-rx.tif)
+exten => s,n,Set(GLOBAL(LASTFAXCALLERNUM)=${CALLERID(num)})
+exten => s,n,Set(GLOBAL(LASTFAXCALLERNAME)=${CALLERID(name)})
+exten => s,n,NoOp(**** SETTING FAXOPT ****)
+exten => s,n,Set(FAXOPT(ecm)=yes)
+exten => s,n,Set(FAXOPT(headerinfo)=MY FAXBACK RX)
+exten => s,n,Set(FAXOPT(localstationid)=1234567890)
+exten => s,n,Set(FAXOPT(maxrate)=14400)
+exten => s,n,Set(FAXOPT(minrate)=2400)
+exten => s,n,NoOp(FAXOPT(ecm) : ${FAXOPT(ecm)})
+exten => s,n,NoOp(FAXOPT(headerinfo) : ${FAXOPT(headerinfo)})
+exten => s,n,NoOp(FAXOPT(localstationid) : ${FAXOPT(localstationid)})
+exten => s,n,NoOp(FAXOPT(maxrate) : ${FAXOPT(maxrate)})
+exten => s,n,NoOp(FAXOPT(minrate) : ${FAXOPT(minrate)})
+exten => s,n,NoOp(**** RECEIVING FAX : ${FAXFILE} ****)
+exten => s,n,ReceiveFAX(/home/taaza/${FAXFILE})
+exten = s,n,Hangup
+;exten => s,n,Set(DateTime=${STRFTIME(${EPOCH},,%Y%m%d)}_${STRFTIME(${EPOCH},,%H%M)})
+;exten => s,n,Set(THISFAXFILENAME=fax_${DateTime})
+;exten => s,n,Set(CallerIDString=${CALLERID(all)})
+;exten => s,n,ReceiveFAX(/recvd_faxes/${THISFAXFILENAME}.tiff)
+;exten => s,n,System( tiff2pdf -o /recvd_faxes/${THISFAXFILENAME}.pdf /recvd_faxes/${THISFAXFILENAME}.tiff )
+;exten => s,3,Wait(1)
+;exten => s,n,AGI(email_fax.php)
+;exten => s,n,Hangup
+
+
+
+
+[voicemenu-custom-1]   
+exten => s,1,NoOp(New_Incoming_FAX)
+exten => s,2,Answer()
+exten => s,3,Wait(3)
+exten => s,n,Set(DateTime=${STRFTIME(${EPOCH},,%Y%m%d)}_${STRFTIME(${EPOCH},,%H%M)})
+exten => s,n,Set(THISFAXFILENAME=fax_${DateTime})
+exten => s,n,Set(CallerIDString=${CALLERID(all)})
+exten => s,n,ReceiveFAX(/recvd_faxes/${THISFAXFILENAME}.tiff)
+exten => s,n,System( tiff2pdf -o /recvd_faxes/${THISFAXFILENAME}.pdf /recvd_faxes/${THISFAXFILENAME}.tiff )
+exten => s,3,Wait(1)
+exten => s,n,AGI(email_fax.php)
+exten => s,n,Hangup
