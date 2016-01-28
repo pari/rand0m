@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  takenon: 2010-06-27 15:56:12
+  amount: 1
+
+two:
+  takenon: 2010-06-27 15:56:12
+  amount: 1

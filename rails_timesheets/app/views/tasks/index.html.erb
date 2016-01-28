@@ -1,0 +1,60 @@
+<% totalminutes = 0 %>
+
+<div style='margin: auto; margin-top: 10px; margin-bottom: 10px; padding: 7px; background-color: #EFEFEF; border: 1px solid #999; width: 90%;'>
+	
+	Show Tasks in project 
+	<%= collection_select('searchtasks', 'project', current_user().projects, :id, :name, {:prompt => true}) %>
+	
+	between <%= calendar_date_select 'searchtasks', :fromdate , :valid_date_check => "date <= (new Date()).stripTime()", :size => 14 %> and <%= calendar_date_select 'searchtasks', :todate , :valid_date_check => "date <= (new Date()).stripTime()", :size => 14 %>
+	
+</div>
+
+
+<Table cellpadding=5 cellspacing=0 style='margin: 0px 20px 20px 20px;'>
+	<TR>
+		<th colspan=5 align='center'><B>List of Journal Entries</B></th>
+		<th>
+			<% unless current_user().isclient %>
+			<%= link_to "New Entry", :controller => "tasks", :action => "new" %>
+			<% end %>
+		</th>
+	</tr>
+	
+	<tr  class='underlinedRow'>
+		<TD><B>Task Description</B></TD>
+		<TD style='min-width: 80px;'><B>Project</B></TD>
+		<TD style='min-width: 70px;'><B>User</B></TD>
+		<TD><B>Date</B></TD>
+		<TD style='min-width: 100px;'><B>Minutes</B></TD>
+		<TD></TD>
+	</tr>
+	
+	<% @tasks.each do |thistask| %>
+		<% totalminutes += thistask.minutes %>
+		<tr  class='underlinedRow'>
+			<TD><%= thistask.name %></TD>
+			<TD><%= thistask.project.name %></TD>
+			<TD><%= thistask.user.username %></TD>
+			<TD><%= thistask.tday %></TD>
+			<TD align='center'><%= thistask.minutes %></TD>
+			<TD  valign='top'>
+				<% if current_user().id == thistask.user.id %>
+					<%= link_to "Edit", :controller => "tasks", :action => "edit" , :id =>thistask  %> | 
+					<%= link_to "Delete", :controller => "tasks", :action => "delete" , :id =>thistask , :confirm => "Are you sure?"  %>
+				<% end %>
+			</TD>
+		</tr>
+	<% end %>
+	
+	<tr  class='underlinedRow'>
+		<TD></TD>
+		<TD></TD>
+		<TD></TD>
+		<TD align='right'> Total : </TD>
+		<TD align='center'><%= totalminutes %></TD>
+		<TD  valign='top'></TD>
+	</tr>
+	
+</table>
+
+

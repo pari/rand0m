@@ -1,0 +1,6 @@
+<% #if current_user %>  
+	<%= #link_to "Log out", logout_path %>
+<% # else %>
+<%= #link_to "Create New User", new_user_path %>  
+<%= #link_to "Log in", login_path %>
+<% #end %>

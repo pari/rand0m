@@ -1,0 +1,2 @@
+module CouponPricesHelper
+end

@@ -1,0 +1,104 @@
+<% form_for @npaycheck, :url=>{:action => "create"} do |f| %>  
+<div id='div_newPaycheckForm' style='margin-bottom: 10px; border: 1px solid #999; width: 550px ; margin-left: 50px;<% if f.error_messages.strip != '' %><% else %>display:none;<% end %>'>
+	<%= f.error_messages %>
+	<table border="0" cellspacing="4" cellpadding="0">
+		<tr><th colspan=2 align='center'>Add New Paycheck</th></tr>
+		<TR>
+			<td align='right'><%= f.label :employee_id, "Employee : " %></td>
+			<td>
+				<%= collection_select(:paycheck, :employee_id, @listOfEmployees, :id, :name , {:prompt => true} )%>
+			</td>
+		</TR>
+		
+		<tr>
+			<td align='right'><%= f.label :forday, "Pay Period - Start Date : " %></td>
+			<td><%= calendar_date_select :paycheck, :payperiod_startdate , :valid_date_check => "date <= (new Date()).stripTime()", :size => 14 %></td>
+		</tr>
+		
+		<tr>
+			<td align='right'><%= f.label :forday, "Pay Period - End Date : " %></td>
+			<td><%= calendar_date_select :paycheck, :payperiod_enddate , :valid_date_check => "date <= (new Date()).stripTime()", :size => 14 %></td>
+		</tr>
+		
+		<tr>
+			<td align='right'><%= f.label :forday, "Pay Date :" %></td>
+			<td><%= calendar_date_select :paycheck, :paydate , :size => 14 %></td>
+		</tr>
+		
+		<TR>
+			<td align='right'><%= f.label :payamount, "Pay Amount : " %></td>
+			<td><NOBR><%= f.text_field :payamount , :size => 7 , :maxlength => 7 %></NOBR></td>
+		</TR>
+		
+		
+		<tr>
+			<TD></TD>
+			<td><%= f.submit "Add" %></td>
+		</tr>
+	</table>
+</div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr>
+		<th><h1><%= @listPaychecks_string %></h1></th>
+		<TH><A href='#' onclick="$('div_newPaycheckForm').toggle();">Add Paycheck</A></TH>
+	</tr>
+</table>
+<%
+if @listOfPaychecks.count == 0 
+%>
+<div class='usermessage'>No Paychecks entered yet!</div>
+<%
+else
+%>
+<Table cellpadding=5 cellspacing=0 style='margin: 0px 20px 20px 20px;'>
+	<TR class='underlinedRow headingRow'>
+		<TD><B>No.</B></TD>
+		<TD><B>Employee</B></TD>
+		<TD><B>PayPeriod</B></TD>
+		<TD><B>Paydate</B></TD>
+		<TD><B>PayOut($)</B></TD>
+		<TD><B>PayIn($)</B></TD>
+		<TD></TD>
+		<TD></TD>
+		<TD></TD>
+	</TR>
+	
+	<% 
+	pno = 0
+	@listOfPaychecks.each do |paycheck| 
+	pno = pno + 1
+	%>
+	<TR class='underlinedRow'>
+		<TD><%= pno %> </TD>
+		<TD> <%= link_to paycheck.employee.name , :controller => "paychecks", :action => "emphistory" , :id =>paycheck.employee  %></TD>
+		<TD><%= paycheck.payperiod_startdate.to_s(:short) %> - <%= paycheck.payperiod_enddate.to_s(:short) %></TD>
+		<TD><%= paycheck.paydate.to_s(:short) %></TD>
+		<TD align='right'><%= paycheck.payamount %></TD>
+		<TD align='right'><%= paycheck.payinamount_htmlcolor %></TD>
+		<TD>
+			<% if paycheck.payinamount != paycheck.payamount %>
+				<%= link_to "Add Return Check", :controller => "paychecks", :action => "show" , :id =>paycheck  %>
+			<% else %>
+				&nbsp;
+			<% end %>
+		</TD>
+		<TD>
+			<%= link_to "Details", :controller => "paychecks", :action => "show" , :id =>paycheck %>
+		</TD>
+		<td><%= link_to 'Delete', paycheck, :confirm => 'Are you sure?', :method => :delete %></td>
+	</TR>
+	<% end %>
+</Table>
+
+<% end %>

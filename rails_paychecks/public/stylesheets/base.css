@@ -1,0 +1,51 @@
+body {
+   font-family: Helvetica, Geneva, Arial, sans-serif;
+   font-size: small;
+   font-color: #000;
+   background-color: #edf3fe;
+}
+
+a:link, a:active, a:visited {
+   color: #CD0000;
+}
+
+input { 
+   margin-bottom: 5px;
+}
+
+p { 
+   line-height: 150%;
+}
+
+div#container {
+	width: 760px;
+	margin: 0 auto;
+	background-color: #FFFFFF;
+	border: 1px solid #999;
+}
+
+div.usermessage{
+	font-size: 110%;
+	padding: 10px;
+	color: #96563F;
+}
+
+TR.underlinedRow TD{
+	border-bottom: 1px solid #999;
+}
+
+TR.headingRow TD{
+	border-top: 1px solid #999;
+	background-color: #DBF3D4;
+}
+
+
+div#notice{
+	width: 95%;
+	background-color: #FFEAB5;
+	border: 1px solid #999;
+	padding: 4px;
+	margin: 0px 5px 5px 5px;
+}
+
+div#user_nav { float: right; font-size: 0.9em; }

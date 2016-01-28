@@ -1,0 +1,18 @@
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr>
+		<th colspan=2 align='center'><B>Transactions with <%= @transable.name %></B></th>
+		<th> </th>
+	</tr>
+	<tr>
+		<td><B>Purchase Date</B> </td>
+		<td><B>Amount</B></td>
+		<td></td>
+	</tr>
+	<% @transactions.each do |transaction| %>
+		<tr>
+			<td><%= transaction.trdate.to_s(:long) %></td>
+			<td align='right'>Rs <%= transaction.tramount %></td>
+			<td>details</td>
+		</tr>
+	<% end %>
+</table>

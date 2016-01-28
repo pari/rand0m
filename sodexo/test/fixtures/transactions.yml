@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  trdate: 2010-07-15
+  tramount: 1
+  trans_id: 1
+  trans_type: MyString
+
+two:
+  trdate: 2010-07-15
+  tramount: 1
+  trans_id: 1
+  trans_type: MyString

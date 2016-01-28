@@ -1,0 +1,30 @@
+
+<% form_for :editproject , @selectedProject , :url=>{ :action => "update" , :id => params[:id] } do |f| %>
+<%= f.error_messages %>
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr><th colspan=2 align='center'>Edit Name, Description for selected Project</th></tr>
+	<tr>
+		<td align='right'>Project Name:</td>
+		<td><%= f.text_field :name %></td>
+	</tr>
+	<tr>
+		<td align='right' valign='top'>Project Description:</td>
+		<td><%= f.text_area :description , :rows=>5 , :cols=>40 %></td>
+	</tr>
+	<tr>
+		<td valign='top' align='right'>Users:</td>
+		<td>
+			<% for user in User.find(:all) %>
+			<div>
+				<%= check_box_tag "editproject[user_ids][]", user.id , @selectedProject.users.include?(user) %>
+				<%= user.username %>
+			</div>
+			<% end %>
+		</td>
+	</tr>
+	<tr>
+		<td><%= link_to "Back", :controller => "project", :action => "index" %></td>
+		<td align='center'><%= submit_tag "Update Project" %></td>
+	</tr>
+</table>
+<% end %>

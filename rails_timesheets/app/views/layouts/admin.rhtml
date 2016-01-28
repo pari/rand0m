@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en-us" />
+<title>Manage list of Projects</title>
+<%= stylesheet_link_tag "base" %>
+</head>
+<body id="library" style='background-color: #996;'>
+<div id="container">
+	<div style='padding: 7px; float:right;'>
+		<A href='/project/'>Projects</A> | 
+		<A href='/users/' style='margin-right: 70px;'>Users</A> 
+		<A href='/users/logout' style='font-size: 120%;'>Logout</A>
+	</div>
+	<% if flash[:notice] %>
+		<div id="notice" style='clear:both;'><%= flash[:notice] %></div>
+	<% end %>
+	<div><%= yield -%></div>
+</div>
+</body>
+</html>

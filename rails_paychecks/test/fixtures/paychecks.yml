@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  payperiod_startdate: 2010-09-30
+  payperiod_enddate: 2010-09-30
+  paydate: 2010-09-30
+  payamount: 1.5
+  employee: 
+
+two:
+  payperiod_startdate: 2010-09-30
+  payperiod_enddate: 2010-09-30
+  paydate: 2010-09-30
+  payamount: 1.5
+  employee: 

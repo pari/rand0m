@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en-us" />
+<title>Admin Login</title>
+<%= stylesheet_link_tag "base" %>
+</head>
+<body id="library" style='background-color: #996;'>
+<div id="container">
+	<% if flash[:notice] %>
+		<div id="notice"><%= flash[:notice] %></div>
+	<% end %>
+	<div style='width: 600px;'>
+		<table border="0" cellspacing="5" cellpadding="5" align='center'>
+			<% form_for :login, :url => { :action => "adminlogin" , :controller => "user" } do |f| %>
+			<tr><th colspan=2 align='center'>Login</th></tr>
+			<tr><td colspan=2 align='center'><%= f.error_messages %></td>
+			<tr>
+				<td align='right'>Admin Username :</td>
+				<td><%= f.text_field :admin_uname %></td>
+			</tr>
+			<tr>
+				<td align='right'>Password :</td>
+				<td><%= f.password_field :admin_pwd %></td>
+			</tr>
+			<tr><td colspan=2 align='center'><%= f.submit "Login" %></td>
+			<% end %>
+		</table>
+	</div>
+</div>
+</body>
+</html>

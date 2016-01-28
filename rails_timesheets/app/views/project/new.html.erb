@@ -1,0 +1,19 @@
+
+<% form_for :newproject , @nproject, :url=>{:action => "create"} do |f| %>
+<%= f.error_messages %>
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr><th colspan=2 align='center'>Enter Name, Description for new Project</th></tr>
+	<tr>
+		<td align='right'>Project Name:</td>
+		<td><%= f.text_field :name %></td>
+	</tr>
+	<tr>
+		<td align='right' valign='top'>Project Description:</td>
+		<td><%= f.text_area :description , :rows=>5 , :cols=>40 %></td>
+	</tr>
+	<tr>
+		<td><%= link_to "Back", :controller => "project", :action => "index" %></td>
+		<td align='center'><%= submit_tag "Create Project" %></td>
+	</tr>
+</table>
+<% end %> 

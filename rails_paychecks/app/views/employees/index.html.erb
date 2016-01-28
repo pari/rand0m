@@ -1,0 +1,30 @@
+<h1>Listing employees</h1>
+
+<Table cellpadding=5 cellspacing=0 style='margin: 0px 20px 20px 20px;'>
+<TR class='underlinedRow headingRow'>
+	<td>Name</td>
+	<td>Designation</td>
+	<td>Phone</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+
+<% @employees.each do |employee| %>
+	<TR class='underlinedRow'>
+		<td><%=h employee.name %></td>
+		<td><%=h employee.designation %></td>
+		<td><%=h employee.phone %></td>
+		<td><%= link_to "Paycheck History", :controller => "paychecks", :action => "emphistory" , :id =>employee  %></td>
+		<td><%= link_to 'General Details', employee %></td>
+		<td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+		<td><%=link_to 'Destroy', employee, :confirm => 'Are you sure?', :method => :delete %>
+		</td>
+	</tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New employee', new_employee_path %>

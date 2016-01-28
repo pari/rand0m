@@ -1,0 +1,60 @@
+
+<% form_for :employee , @employee, :url=>{:action => "update", :id =>@employee.id } do |f| %>  
+<%= f.error_messages %>  
+
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr><th colspan=2 align='center'><H2>Update Employee</H2></th></tr>
+	<tr>
+		<td align='right'><%= f.label :username, "Username" %></td>
+		<td><%= f.text_field :username %></td>
+	</tr>
+	<tr>
+		<td align='right'><%= f.label :fullname, "Full Name" %></td>
+		<td><%= f.text_field :fullname %></td>
+	</tr>
+	<tr>
+		<td align='right'><%= f.label :email, "Email" %></td>
+		<td><%= f.text_field :email %></td>
+	</tr>
+	
+	<tr>
+		<td align='right'><%= f.label :empid, "Employee Id" %></td>
+		<td><%= f.text_field :empid %></td>
+	</tr>
+	
+	<tr>
+		<td align='right'><%= f.label :empid, "Address" %></td>
+		<td><%= f.text_field :address %></td>
+	</tr>
+	
+	
+	<tr>
+		<td align='right'>Department</td>
+		<td>
+			<%= collection_select( :employee, :department_id , @listOfDepartments, :id, :name ,{:prompt => true} ) %>
+		</td>
+	</tr>
+	
+	<tr>
+		<td align='right'>Location</td>
+		<td>
+			<%= collection_select( :employee, :location_id , @listOfLocations, :id, :name ,{:prompt => true} ) %>
+		</td>
+	</tr>
+	
+	<tr>
+		<td align='right'><%= f.label :password, "Password" %></td>
+		<td><%= f.password_field :password %></td>
+	</tr>
+	
+	<tr>
+		<td align='right'><%= f.label :password_confirmation, "Confirm Password" %></td>
+		<td><%= f.password_field :password_confirmation %></td>
+	</tr>
+	
+	<tr>
+		<td><%= link_to "Back", :action => "index" %></td>
+		<td align='center'><%= f.submit "Update" %></td>
+	</tr>
+</table>
+<% end %>

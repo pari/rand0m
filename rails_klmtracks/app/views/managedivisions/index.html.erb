@@ -1,0 +1,125 @@
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr><th><h1>List of Divisions</h1></th>
+		<th><A href='#' onclick="$$('.newdsdforms').each(Element.hide); $('div_newDivisionForm').toggle();">New Division</A></th>
+		<th><A href='#' onclick="$$('.newdsdforms').each(Element.hide); $('div_newSectionForm').toggle();">New Section</A></th>
+		<th><A href='#' onclick="$$('.newdsdforms').each(Element.hide); $('div_newDepartmentForm').toggle();">New Department</A></th>
+	</tr>
+</table>
+
+<div id='div_newDivisionForm' style='display:none; margin-bottom: 50px;' class='newdsdforms'>
+	<% form_for @ndivision, :url=>{:action => "create_division"} do |f| %>  
+	<%= f.error_messages %>
+	<table border="0" cellspacing="5" cellpadding="5">
+		<tr>
+			<td align='right'><h3><%= f.label :name, "New Division Name" %></h3></td>
+			<td><%= f.text_field :name %></td>
+			<td align='center'><%= f.submit "Create" %></td>
+		</tr>
+	</table>
+	<% end %>
+</div>
+
+
+<div id='div_newSectionForm' style='display:none; margin-bottom: 50px;'  class='newdsdforms'>
+	<% form_for @nsection, :url=>{:action => "create_section"} do |f| %>  
+	<%= f.error_messages %>
+	<table border="0" cellspacing="2" cellpadding="2">
+		<tr>
+			<td align='right'>Under Division</td>
+			<td>
+				<%= select_tag( 'section[division_id]', "<option> -> Select a Division </option>" + options_from_collection_for_select( @listOfDivisions, :id, :name)) %>
+			</td>
+		</tr>
+		<tr>
+			<td align='right'><%= f.label :name, "New Section Name" %></td>
+			<td><%= f.text_field :name %></td>
+		</tr>
+		<tr>
+			<td align='right'></td>
+			<td><%= f.submit "Create" %></td>
+		</tr>
+	</table>
+	<% end %>
+</div>
+
+
+
+<div id='div_newDepartmentForm' style='display:none; margin-bottom: 50px;'  class='newdsdforms'>
+	<% form_for @nDepartment, :url=>{:action => "create_department"} do |f| %>
+	<table border="0" cellspacing="2" cellpadding="2">
+		<tr>
+			<td align='right'>Division</td>
+			<td>
+				<%= select_tag 'department_divisionid', "<option> -> Select a Division </option>" + options_from_collection_for_select( @listOfDivisions, :id, :name) , :include_blank => true,:onchange => remote_function(:url => {:action => 'getListOfSections'}, :with => "'divid='+this.value") %>
+			</td>
+		</tr>
+		<tr>
+			<td align='right'>Section</td>
+			<td>
+				<div id="div_sections_in_division"><%= render :partial => 'sectionsindivision', :object => @sectionsInThisDiv %></div>
+			</td>
+		</tr>
+		<tr>
+			<td align='right'><%= f.label :name, "New Department Name" %></td>
+			<td><%= f.text_field :name %></td>
+		</tr>
+		<tr>
+			<td align='right'></td>
+			<td><%= f.submit "Create" %></td>
+		</tr>
+	</table>
+	<% end %>
+</div>
+
+
+
+
+
+<% if flash[:notice] %>
+	<div id="notice"><%= flash[:notice] %></div>
+<% end %>
+
+
+<%
+if @listOfDivisions.count == 0 
+%>
+	<div class='usermessage'>You do not have any Divisions Created yet!</div>
+<%
+else
+%>
+	<Table cellpadding=5 cellspacing=0 style='margin: 0px 20px 20px 20px;'>
+		<TR class='underlinedRow headingRow'>
+			<TD width='100px;'><B>Division</B></TD>
+			<TD align='center'><B>Sections</B></TD>
+			<TD></TD>
+		</TR>
+		<% 
+		@listOfDivisions.each do |division| 
+		%>
+		<TR class='underlinedRow'>
+			
+			<TD valign='top'>
+				<%= division.name %>
+			</TD>
+			<TD>
+				<table border="0" cellspacing="0" cellpadding="2" style='margin-bottom: 25px;'>
+					<%
+						listOfSections = division.sections
+						listOfSections.each do |this_section|
+					%>
+					<TR>
+						<TD valign='top'><div style='min-width: 100px;'><%= this_section.name %></div></TD>
+						<TD>
+							<% this_section.departments.each do |this_department| %>
+								<div style='padding: 3px;'><NOBR><%= this_department.name %></NOBR></div>
+							<% end %>
+						</TD>
+					</TR>
+					<% end %>
+				</table>
+			</TD>
+			<TD width='100'>&nbsp;</TD>
+		</TR>
+		<% end %>
+	</Table>
+<% end %>

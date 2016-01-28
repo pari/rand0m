@@ -1,0 +1,101 @@
+
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr>
+		<td colspan=2 align='center'>
+			<%= link_to "Back to " + @this_PayCheck.employee.name + "'s Acc", :controller => "paychecks", :action => "emphistory" , :id =>@this_PayCheck.employee  %>
+		</td>
+	</tr>
+	<tr>
+		<td valign='top' style='background-color: #EFEFEF;'>
+			<table border="0" cellspacing="5" cellpadding="5">
+				<tr>
+					<th align='center' colspan=2>Details of Paycheck #<%=@this_PayCheck.id %></th>
+				</tr>
+				<tr>
+					<td align='right'>Employee :</td>
+					<td><%= @this_PayCheck.employee.name %></td>
+				</tr>
+				<tr>
+					<td align='right'>Payperiod :</td>
+					<td><%= @this_PayCheck.payperiod_startdate.to_s(:short) %> - <%= @this_PayCheck.payperiod_enddate.to_s(:short) %></td>
+				</tr>
+				<tr>
+					<td align='right'>Pay Date :</td>
+					<td><%= @this_PayCheck.paydate.to_s(:long) %></td>
+				</tr>
+				<tr>
+					<td align='right'>Amount :</td>
+					<td><B>$ <%= @this_PayCheck.payamount %></B></td>
+				</tr>
+			</table>
+		</td>
+		<td valign='top'>
+			<Table cellpadding=5 cellspacing=0 style='margin: 0px 20px 20px 20px;'>
+				<tr><th align='center' colspan=6>Details of Return-Checks for Paycheck #<%=@this_PayCheck.id %></th></tr>
+				<TR class='underlinedRow headingRow'>
+					<TD>RC Date</TD>
+					<TD>RC Amount</TD>
+					<TD style='min-width:150px;'>In Favor Of</TD>
+					<TD>Check.No</TD>
+					<TD>&nbsp;</TD>
+				</tr>
+				<% @this_PayCheck.returnchecks.each do |rc| %>
+					<TR class='underlinedRow'>
+						<td> <%= rc.checkdate.to_s(:long) %></td>
+						<td align='right'> <%= rc.amount %></td>
+						<td> <I><%= rc.infavorof %></I></td>
+						<td> 
+							<%= link_to rc.checknumber, :controller => "paychecks", :action => "editrc" , :id =>rc  %>
+						</td>
+						<td> <%= rc.commenticon %></td>
+					</tr>
+				<% end %>
+				<tr>
+					<th>Total :</th>
+					<th align='right'>$ <%= @this_PayCheck.payinamount %></th>
+					<th align=right style='color: #ABA798; font-weight: normal;' colspan=3>
+						need $ <%= @this_PayCheck.payamount - @this_PayCheck.payinamount %> more
+					</th>
+				</tr>
+			</table>
+			
+			
+			
+			<% form_for @returnCheck, :url=>{:action => "createrc", :id => @returnCheck.paycheck } do |f| %>  
+			<div id='div_newReturncheckForm' style='margin-bottom: 10px; border: 1px solid #999; width: 400px ; margin-left: 50px; <% if (@this_PayCheck.payinamount != @this_PayCheck.payamount) || (f.error_messages.strip != '') %><% else %>display:none;<% end %>'>
+				<%= f.error_messages %>
+				<table border="0" cellspacing="4" cellpadding="0">
+					<tr><th colspan=2 align='center'>Add New Return Check</th></tr>
+
+					<tr>
+						<td align='right'><%= f.label :checkdate, "Return Check Date :" %></td>
+						<td><%= calendar_date_select :returncheck, :checkdate , :size => 14 %></td>
+					</tr>
+					<TR>
+						<td align='right'><%= f.label :amount, "Check Amount : " %></td>
+						<td><NOBR><%= f.text_field :amount , :size => 7 , :maxlength => 7 %></NOBR></td>
+					</TR>
+					<TR>
+						<td align='right'><%= f.label :infavorof, "In Favor Of : " %></td>
+						<td><NOBR><%= f.text_field :infavorof , :size => 25 , :maxlength => 64 %></NOBR></td>
+					</TR>
+					<TR>
+						<td align='right'><%= f.label :checknumber, "Check Number : " %></td>
+						<td><NOBR><%= f.text_field :checknumber , :size => 12 , :maxlength => 32 %></NOBR></td>
+					</TR>
+					
+					<TR>
+						<td align='right' valign='top'><%= f.label :comment, "Comment : " %></td>
+						<td><NOBR><%= f.text_area :comment , :rows => 3, :cols=> 30 %></NOBR></td>
+					</TR>
+					
+					<tr>
+						<TD></TD>
+						<td><%= f.submit "Add" %></td>
+					</tr>
+				</table>
+			</div>
+			<% end %>
+		</td>
+	</tr>
+</table>

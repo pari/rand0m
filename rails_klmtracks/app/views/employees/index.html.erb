@@ -1,0 +1,44 @@
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr><th><h1>List of Employees</h1></th>
+		<th><%= link_to "New Employee", :action => "new" %></th>
+	</tr>
+</table>
+
+<% if flash[:notice] %>
+	<div id="notice"><%= flash[:notice] %></div>
+<% end %>
+
+
+<%
+if @employees.count == 0 
+%>
+<div class='usermessage'>You do not have any employees Created yet!</div>
+<%
+else
+%>
+<Table cellpadding=5 cellspacing=0 style='margin: 0px 20px 20px 20px;'>
+	<TR class='underlinedRow headingRow'>
+	<TD><B>No.</B></TD>
+	<TD><B>Username</B></TD>
+	<TD><B>Full Name</B></TD>
+	<TD><B>Email</B></TD>
+	<TD></TD>
+	</TR>
+	<% 
+	pno = 0
+	@employees.each do |emp| 
+	pno = pno + 1
+	%>
+	<TR class='underlinedRow'>
+	<TD><%= pno %> </TD>
+	<TD><%= emp.username %></TD>
+	<TD><%= emp.fullname %></TD>
+	<TD><%= emp.email %></TD>
+	<TD>
+		<%= link_to "Edit", :action => "edit" , :id =>emp  %>
+	</TD>
+	</TR>
+	<% end %>
+</Table>
+
+<% end %>

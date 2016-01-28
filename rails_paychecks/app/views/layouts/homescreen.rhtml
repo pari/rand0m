@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en-us" />
+<title>Paychecks Manager</title>
+<%= stylesheet_link_tag "base" %>
+<%= javascript_include_tag :defaults %>
+<%= calendar_date_select_includes "red" %>
+</head>
+<body id="library">
+<div id="container">
+	<div style='padding: 7px;'>
+		<% user_session = UserSession.find %>
+		 <A href='/employees/'>Employees</A> | <A href='/paychecks/'>All Paychecks</A> | 
+		
+		<%= link_to "Logout", :controller => "user_sessions", :action => "destroy" , :id =>user_session , :confirm => "Are you sure?"  %>
+
+	</div>
+	<% if flash[:notice] %>
+		<div id="notice"><%= flash[:notice] %></div>
+	<% end %>
+	<div style='margin: 7px;'><%= yield -%></div>
+</div>
+</body>
+</html>

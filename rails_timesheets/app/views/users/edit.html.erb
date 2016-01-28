@@ -1,0 +1,38 @@
+
+<% form_for :edituser , @selectedUser , :url=>{ :action => "update" , :id => params[:id] } do |f| %>
+<%= f.error_messages %>
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr><th colspan=2 align='center'>Edit EmailId or Password for selected User</th></tr>
+	<tr>
+		<td align='right'>Email Address:</td>
+		<td><%= f.text_field :email %></td>
+	</tr>
+	<tr>
+		<td align='right' valign='top'>Is a Client:</td>
+		<td><%= check_box_tag "edituser[isclient]", '1' , @selectedUser.isclient == true %></td>
+	</tr>
+	<tr>
+		<td align='right' valign='top'>Password:</td>
+		<td><%= f.password_field :password %></td>
+	</tr>
+	<tr>
+		<td align='right' valign='top'>Password Confirmation:</td>
+		<td><%= f.password_field :password_confirmation %></td>
+	</tr>
+	<tr>
+		<td valign='top' align='right'>Projects:</td>
+		<td>
+			<% for project in Project.find(:all) %>
+			<div>
+				<%= check_box_tag "edituser[project_ids][]", project.id , @selectedUser.projects.include?(project) %>
+				<%= project.name %>
+			</div>
+			<% end %>
+		</td>
+	</tr>
+	<tr>
+		<td><%= link_to "Back", :controller => "users", :action => "index" %></td>
+		<td align='center'><%= submit_tag "Update User" %></td>
+	</tr>
+</table>
+<% end %>

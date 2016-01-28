@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%= link_to @employee.name, :controller => "paychecks", :action => "emphistory" , :id =>@employee  %>
+</p>
+
+<p>
+  <b>Designation:</b>
+  <%=h @employee.designation %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%=h @employee.phone %>
+</p>
+
+
+<%= link_to 'Edit', edit_employee_path(@employee) %> |
+<%= link_to 'Back', employees_path %>

@@ -1,0 +1,25 @@
+<h1>New Transaction with <%= @transable.name %></h1>  
+  
+<% form_for :transaction , :url => { :action => "create" } do |form| %>  
+  <ol class="formList"> 
+    <li>
+      <%= form.label 'Date' %>  
+      <%= form.text_field :trdate %>  
+    </li>
+    <li>  
+      <%= form.label 'Amount' %>  
+      <%= form.text_field :tramount %>  
+    </li>
+
+	<% @transaction.tr_details.each do |tr_detail| %>
+	    <% fields_for "transaction[tr_detail_attributes][]", tr_detail do |tr_detail_form| %>
+	      <li>
+	        Coupon Code: <%= tr_detail_form.text_field :coupon_price_id %>
+	        Qty: <%= tr_detail_form.text_field :qty %>
+	      </li>
+	    <% end %>
+	  <% end %>
+	
+    <li><%= submit_tag "Add Transaction" %></li>  
+  </ol>  
+<% end %>

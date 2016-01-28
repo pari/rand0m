@@ -1,0 +1,79 @@
+
+
+<div id='div_newCommissionForm' style='margin-bottom: 10px; border: 1px solid #999; width: 550px ; margin-left: 50px;'>
+	<% form_for @ncommission, :url=>{:action => "create"} do |f| %>  
+	<%= f.error_messages %>
+	<table border="0" cellspacing="4" cellpadding="0">
+		<tr><th colspan=2>Add New Commission</th></tr>
+		<tr>
+			<td align='right'><%= f.label :forday, "For Day" %> : </td>
+			<td><%= calendar_date_select :commission, :forday , :valid_date_check => "date <= (new Date()).stripTime()", :size => 14 %></td>
+		</tr>
+		<TR>
+			<td align='right'><%= f.label :amount, "Commission Amount" %> : </td>
+			<td><%= f.text_field :amount , :size => 7 , :maxlength => 7 %> Rs</td>
+		</TR>
+		
+		<TR>
+			<td align='right'><%= f.label :employee_id, "Employee" %> : </td>
+			<td>
+				<%= collection_select(:commission, :employee_id, @listOfEmployees, :id, :name_and_showRoom , {:prompt => true} )%>
+			</td>
+		</TR>
+		
+		<tr>
+			<TD></TD>
+			<td><%= f.submit "Add" %></td>
+		</tr>
+	</table>
+	<% end %>
+</div>
+
+
+
+
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr><th><h1>List of Commissions</h1></th></tr>
+</table>
+
+<% if flash[:notice] %>
+	<div id="notice"><%= flash[:notice] %></div>
+<% end %>
+
+
+<%
+if @listOfCommissions.count == 0 
+%>
+<div class='usermessage'>No commissions entered yet!</div>
+<%
+else
+%>
+<Table cellpadding=5 cellspacing=0 style='margin: 0px 20px 20px 20px;'>
+	<TR class='underlinedRow headingRow'>
+		<TD><B>No.</B></TD>
+		<TD width='200'><B>Employee</B></TD>
+		<TD width='200'><B>Date</B></TD>
+		<TD width='200'><B>Location</B></TD>
+		<TD width='200'><B>Amount</B></TD>
+		<TD></TD>
+	</TR>
+	
+	<% 
+	pno = 0
+	@listOfCommissions.each do |tcomsn| 
+	pno = pno + 1
+	%>
+	<TR class='underlinedRow'>
+		<TD><%= pno %> </TD>
+		<TD>
+		<%= tcomsn.employee.fullname  %></TD>
+		<TD><%= tcomsn.forday.to_s(:long) %></TD>
+		<TD>
+		<%= tcomsn.employee.location.name %></TD>
+		<TD><%= tcomsn.amount %></TD>
+		<TD></TD>
+	</TR>
+	<% end %>
+</Table>
+
+<% end %>

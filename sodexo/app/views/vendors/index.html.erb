@@ -1,0 +1,26 @@
+<h1>Listing vendors</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Phone1</th>
+    <th>Phone2</th>
+    <th>Isactive</th>
+  </tr>
+
+<% @vendors.each do |vendor| %>
+  <tr>
+    <td><%= link_to vendor.name, edit_vendor_path(vendor) %></td>
+    <td><%=h vendor.address %></td>
+    <td><%=h vendor.phone1 %></td>
+    <td><%=h vendor.phone2 %></td>
+    <td><%=h vendor.isActive %></td>
+    <td><%= link_to 'History', vendor_transactions_path(vendor) %> | <%= link_to 'New Purchase', new_vendor_transaction_path(vendor) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New vendor', new_vendor_path %>

@@ -1,0 +1,15 @@
+<table border="0" cellspacing="5" cellpadding="5" align='center'>
+<% form_for :user_session , @user_session , :url=>{:action => "create"} do |form| %>  
+	<tr><th colspan=2 align='center'>Login</th></tr>
+	<tr><td colspan=2 align='center'><%= form.error_messages %></td></tr>
+	<tr>
+		<td>Username</td>
+		<td><%= form.text_field :username %></td>
+	</tr>
+	<tr>
+		<td>Password</td>
+		<td><%= form.password_field :password %></td>
+	</tr>
+	<tr><td colspan=2 align='center'><%= form.submit "Submit" %></td></tr>
+<% end %>
+</table>

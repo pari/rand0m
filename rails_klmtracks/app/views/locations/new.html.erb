@@ -1,0 +1,25 @@
+
+<% form_for :location , @location, :url=>{:action => "create"} do |f| %>  
+<%= f.error_messages %>  
+
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr><th colspan=2 align='center'><H2>Create New Location</H2></th></tr>
+	<tr>
+		<td align='right'><%= f.label :name, "Location Name" %></td>
+		<td><%= f.text_field :name %></td>
+	</tr>
+	<tr>
+		<td align='right'><%= f.label :state, "Location State" %></td>
+		<td>
+			<select name='location[state]' id='location_state'>
+				<option value='AndhraPradesh'>AndhraPradesh</option>
+				<option value='karnataka'>Karnataka</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td><%= link_to "Back", :controller => "locations", :action => "index" %></td>
+		<td align='center'><%= f.submit "Create" %></td>
+	</tr>
+</table>
+<% end %>

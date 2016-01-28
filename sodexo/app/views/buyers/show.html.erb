@@ -1,0 +1,28 @@
+<p>
+  <b>Name:</b>
+  <%=h @buyer.name %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%=h @buyer.address %>
+</p>
+
+<p>
+  <b>Phone1:</b>
+  <%=h @buyer.phone1 %>
+</p>
+
+<p>
+  <b>Phone2:</b>
+  <%=h @buyer.phone2 %>
+</p>
+
+<p>
+  <b>Isactive:</b>
+  <%=h @buyer.isActive %>
+</p>
+
+
+<%= link_to 'Edit', edit_buyer_path(@buyer) %> |
+<%= link_to 'Back', buyers_path %>

@@ -1,0 +1,49 @@
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr><th><h1>List of Projects</h1></th>
+		<th><%= link_to "New Project", :controller => "project", :action => "new" %></th>
+	</tr>
+</table>
+
+<%
+if @projects.count == 0 
+%>
+<div class='usermessage'>You do not have any Projects Created yet!</div>
+<%
+else
+%>
+<Table cellpadding=5 cellspacing=0 style='margin: 0px 20px 20px 20px;'>
+	<TR class='underlinedRow'>
+		<TD><B>No.</B></TD>
+		<TD><B>Name</B></TD>
+		<TD><B>Description</B></TD>
+		<TD style='min-width: 150px;'><B>Users</B></TD>
+		<TD></TD>
+	</TR>
+	<% 
+	pno = 0
+	@projects.each do |this_project| 
+	pno = pno + 1
+	%>
+	<TR class='underlinedRow'>
+	<TD valign='top'><%= pno %> </TD>
+	<TD valign='top'><%= this_project.name %></TD>
+	<TD valign='top'><%= this_project.description %></TD>
+	
+	<TD valign='top'>
+		<% if this_project.users.count > 0 %>
+			<% this_project.users.each do |tp| %>
+				<LI style='padding:3px;'><%= tp.username %></li>
+			<% end %>
+		<% else %>
+			<span style='padding:3px;'><i>No Users</i></span>
+		<% end %>
+	</TD>
+	<TD valign='top'>
+		<%= link_to "Edit", :controller => "project", :action => "edit" , :id =>this_project  %> | 
+		<%= link_to "Delete", :controller => "project", :action => "delete" , :id =>this_project , :confirm => "Are you sure?"  %>
+	</TD>
+	</TR>
+	<% end %>
+</Table>
+
+<% end %>

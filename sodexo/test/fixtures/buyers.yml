@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  address: MyString
+  phone1: MyString
+  phone2: MyString
+  isActive: false
+
+two:
+  name: MyString
+  address: MyString
+  phone1: MyString
+  phone2: MyString
+  isActive: false
