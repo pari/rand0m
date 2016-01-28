@@ -1,0 +1,125 @@
+<html>
+<head>
+	<title>drag</title>   
+</head>
+<body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+
+<div class='chDragDialog' style="position: absolute; text-align: left; left: 532px; top: 452px; width: 344px; height: 223px; z-index: 19; background-color: #EFEFEF; border: 2px solid #999;" title="">
+         <div id="Html1" style="position:absolute;left:5px;top:6px;width:333px;height:26px;z-index:4">
+            <table border="0" bgcolor="#103C7B" width="100%" cellspacing="0" cellpadding="2">
+               <tbody>
+                  <tr>
+                  <td class="chDragDialogDragBar" style="cursor:move" width="100%">
+                     <ilayer width="100%" onselectstart="return false">
+                        <layer width="100%" onmouseover="isMouseover=true" onmouseout="isMouseover=false">
+                           <font face="Arial" color="#FFFFFF" style="font-size:13px;text-decoration:none"><b>This is the layer title bar</b></font>
+                        </layer>
+                     </ilayer>
+                  </td>
+                  <td style="cursor:hand" valign="top">
+                     <a href="#" onclick="layerElement.style.visibility='hidden';return false">
+                        <font color="#FFFFFF" face="arial" style="font-size:13px;text-decoration:none"><b>X</b></font>
+                     </a>
+                  </td>
+               </tr>
+               </tbody>
+            </table>  
+         </div>
+         <div id="wb_Text7" style="position:absolute;left:7px;top:40px;width:331px;height:96px;z-index:5;text-align:left;">
+            <span style="color:#000000;font-family:arial;font-size:13px;">
+               This is a demonstration of a draggable layer.<br>Use the title bar to move the window around.<br>To close the window click the 'X' in the title bar.<br><br>A layer can hold any kind of content, like text, images or any other object from the toolbox!</span>
+         </div>
+</div>
+
+
+
+
+
+<div class='chDragDialog' style="position: absolute; text-align: left; left: 232px; top: 252px; width: 344px; height: 223px; z-index: 19; background-color: #EFEFEF;border: 2px solid #999;" title="">
+         <div id="Html1" style="position:absolute;left:5px;top:6px;width:333px;height:26px;z-index:4">
+            <table border="0" bgcolor="#FF5050" width="100%" cellspacing="0" cellpadding="2">
+               <tbody>
+                  <tr>
+                  <td class="chDragDialogDragBar" style="cursor:move" width="100%">
+                     <ilayer width="100%" onselectstart="return false">
+                        <layer width="100%" onmouseover="isMouseover=true" onmouseout="isMouseover=false">
+                           <font face="Arial" color="#FFFFFF" style="font-size:13px;text-decoration:none"><b>This is the layer title bar 2</b></font>
+                        </layer>
+                     </ilayer>
+                  </td>
+                  <td style="cursor:hand" valign="top">
+                     <a href="#" onclick="layerElement.style.visibility='hidden';return false">
+                        <font color="#FFFFFF" face="arial" style="font-size:13px;text-decoration:none"><b>X</b></font>
+                     </a>
+                  </td>
+               </tr>
+               </tbody>
+            </table>  
+         </div>
+         <div id="wb_Text7" style="position:absolute;left:7px;top:40px;width:331px;height:96px;z-index:5;text-align:left;">
+            <span style="color:#000000;font-family:arial;font-size:13px;">
+               This is a demonstration of a draggable layer.<br>Use the title bar to move the window around.<br>To close the window click the 'X' in the title bar.<br><br>A layer can hold any kind of content, like text, images or any other object from the toolbox!</span>
+         </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+
+var chMoveDialog = {
+   isMouseover : false ,
+   isDragging : false ,
+   MouseDownLayer : function(e){
+      var documentTag = "HTML";
+      var srcElement = e.target;  
+      var dragHandlerClassName = "chDragDialogDragBar" ;
+
+      var parentsDragDivs = $(srcElement).closest(".chDragDialog") ;
+      if( parentsDragDivs && parentsDragDivs.length ){
+         chMoveDialog.layerElement = $(srcElement).closest(".chDragDialog")[ 0 ]; 
+         // get max z indexes of all chDragDialog 's and increment the current one's zindex by 1
+         var max_zindex = 0 ;
+         $("div.chDragDialog").each(function(){
+            var current_zindex = $(this).css("z-index");
+            if( max_zindex < current_zindex ){
+               max_zindex = current_zindex ;
+            }
+         });
+         $(chMoveDialog.layerElement).css( "z-index", max_zindex + 1 );
+      }
+      
+      while ( $(srcElement).attr('class') != dragHandlerClassName && srcElement.tagName != documentTag){
+         srcElement = srcElement.parentNode;
+      }
+
+      if ( $(srcElement).attr('class') == dragHandlerClassName ){
+         chMoveDialog.offsetX = e.clientX;
+         chMoveDialog.offsetY = e.clientY;
+         chMoveDialog.currentX = parseInt(chMoveDialog.layerElement.style.left);
+         chMoveDialog.currentY = parseInt(chMoveDialog.layerElement.style.top);
+         chMoveDialog.isDragging = true;
+         document.onmousemove = chMoveDialog.MouseMoveLayer;
+     }
+
+   },
+
+   MouseMoveLayer : function(e){
+      if (!chMoveDialog.isDragging) return;
+      chMoveDialog.layerElement.style.left = chMoveDialog.currentX  + e.clientX - chMoveDialog.offsetX + "px" ;
+      chMoveDialog.layerElement.style.top = chMoveDialog.currentY + e.clientY - chMoveDialog.offsetY + "px" ;
+      return false ;
+   }
+};
+
+document.onmousedown = chMoveDialog.MouseDownLayer ;
+document.onmouseup = function(){
+   chMoveDialog.isDragging = false ;
+}
+
+</script>
+
+</body>
+</html>
