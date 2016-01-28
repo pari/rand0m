@@ -1,0 +1,210 @@
+<script>
+
+var multiSel = function( od ){
+	
+	_$ = function(x){
+		if ( typeof x != 'string' ){ return null ;}
+		try{
+			return document.getElementById(x); 
+		}catch(err){ return null; }
+	};
+
+	var get_distinct_attrib_vals = function( attr, fiar , is_last_sel ){
+		// fiar is the filters array with each el as object with attribname and val
+		// attr is distinct atrrib's name
+		// fiar = [ { 'attrib' : 'country' , 'val' : 'india' } , { 'attrib' : 'state' , 'val' : 'ap' } ]
+		
+		var trvals = [];
+		var doi = [];
+		if(fiar.length){
+			
+			for(var r=0 ; r< od.data.length ; r++ ){
+				var hasAllAttribs = true ;
+				
+				for(var s=0; s< fiar.length ; s++ ){
+					if( od.data[r].hasOwnProperty( fiar[s]['attrib'] ) && od.data[r][fiar[s]['attrib']] == fiar[s]['val'] ){
+						
+					}else{
+						// we will not push even if just one attrib does not match
+						hasAllAttribs = false;
+					}
+				}
+				if(hasAllAttribs){
+					doi.push(od.data[r]);
+				}
+			}
+		}else{
+			doi = od.data ;
+		}
+
+		if( is_last_sel && doi.length && doi[0].hasOwnProperty('key')){
+			for( var t = 0 ; t < doi.length ; t++ ){
+				trvals.push({ 'val' : doi[t]['key'] , 'text' : doi[t][attr] });
+			}
+			
+			var u = {}, a = [];
+			for( var i = 0, l = trvals.length; i < l; ++i ){
+				if( u.hasOwnProperty(trvals[i]['val']) ) {
+					continue ;
+				}
+				a.push({ 'val': trvals[i]['val'] , 'text': trvals[i]['text'] });
+				u[trvals[i]['val']] = 1;
+			}
+			// todo : do sorting of a based on text and still not loosing values
+			return a ;
+		}else{
+			for( var t = 0 ; t < doi.length ; t++ ){
+				trvals.push( doi[t][attr] );
+			}
+			
+			var u = {}, a = [];
+			for( var i = 0, l = trvals.length; i < l; ++i ){
+				if( u.hasOwnProperty(trvals[i]) ) {
+					continue ;
+				}
+				a.push( trvals[i] );
+				u[trvals[i]] = 1;
+			}
+			// sort trvals
+			a.sort();
+			return a ;
+		}
+	};
+	
+	var empty_all_selects_that_follows = function(j){
+		for( var k = 0 ; k < od.selects.length ; k++ ){
+			if( k > j ){
+				var el = _$(od.selects[k]['id']);
+				el.options.length = 0;
+			}
+		}
+	};
+	
+	var load_values_into_next_select = function( j ){
+		var fiar = [] ;
+		for( var k = 0 ; k < od.selects.length ; k++ ){ 
+			//fiar = [ { 'attrib' : 'country' , 'val' : 'india' } , { 'attrib' : 'state' , 'val' : 'ap' } ]
+			if( k<= j ){
+				var psel = _$( od.selects[k]['id'] ); // parent select 
+				var psel_attrib = od.selects[k]['attrib'] ;
+				var pattrib_val = psel.value ;
+				fiar.push( {'attrib' : psel_attrib , 'val' : pattrib_val } );
+			}
+			if( k == j + 1 ){ 
+				// if( j > 0 ){
+					var psel = _$( od.selects[j]['id'] ); // parent select 
+					var psel_attrib = od.selects[j]['attrib'] ;
+					var pattrib_val = psel.value ;
+				// }else{
+				// 	var psel = false;
+				// 	var psel_attrib = '' ;
+				// 	var pattrib_val = '' ;
+				// }
+
+				var nsel = _$(od.selects[k]['id']); // next select   
+				var nsel_attrib = od.selects[k]['attrib'];
+
+				var is_last_sel = false;
+				if(od.selects.length == j + 2 ){
+					// loading values into last select box, we might want key if its present
+					is_last_sel = true ;
+				}
+
+				var matches = get_distinct_attrib_vals( nsel_attrib , fiar , is_last_sel );
+				for( var l=0; l< matches.length ; l++ ){
+					if( is_last_sel && od.data[0].hasOwnProperty('key') ){
+						nsel.options[ nsel.options.length ] = new Option( matches[l]['text'] , matches[l]['val'] );	
+					}else{
+						nsel.options[ nsel.options.length ] = new Option( matches[l] , matches[l] );
+					}
+				}
+				nsel.selectedIndex = -1 ;
+			}
+		}
+	};
+	
+	for( var i = 0 ; i < od.selects.length ; i++ ){
+		_$( od.selects[i]['id'] ).tsi = i ;
+		_$( od.selects[i]['id'] ).addEventListener( 'change' , function(){
+			var u = this.tsi ;
+			empty_all_selects_that_follows(u);
+			load_values_into_next_select(u);
+		}, false);
+	}
+
+	empty_all_selects_that_follows(0);
+	var firstsel = _$(od.selects[0]['id'] );
+	var matches = get_distinct_attrib_vals( od.selects[0]['attrib'] , [] , false );
+	for( var l=0; l< matches.length ; l++ ){
+		firstsel.options[ firstsel.options.length ] = new Option( matches[l] , matches[l] );
+	}
+	firstsel.selectedIndex = -1 ;
+	//load_values_into_next_select(0);
+};
+
+
+var sel_data = [
+	{
+		'country' : 'India' , 
+		'state' : 'ap' ,
+		'city' : 'hyderabad' ,
+		'key' : '12'
+	},
+	{
+		'country' : 'India' , 
+		'state' : 'ap' ,
+		'city' : 'secunderabad',
+		'key' : '13'
+	},
+	{
+		'country' : 'India' , 
+		'state' : 'tn' ,
+		'city' : 'chennai',
+		'key' : '14'
+	},
+	{
+		'country' : 'India' , 
+		'state' : 'ap' ,
+		'city' : 'vizag',
+		'key' : '15'
+	},
+	{
+		'country' : 'India' , 
+		'state' : 'California' ,
+		'city' : 'Indian LosAngeles',
+		'key' : '16'
+	},
+	{
+		'country' : 'America' , 
+		'state' : 'California' ,
+		'city' : 'LosAngeles',
+		'key' : '17'
+	},
+	{
+		'country' : 'America' , 
+		'state' : 'California' ,
+		'city' : 'SanFrancisco',
+		'key' : '18'
+	}
+];
+
+
+window.onload = function(){
+	multiSel({
+		data : sel_data , 
+		selects : [
+			{ 'id' : 'sel_countries' , 'attrib' : 'country' }, 
+			{ 'id' : 'sel_states' , 'attrib' : 'state' }, 
+			{ 'id' : 'sel_cities' , 'attrib' : 'city' }
+		]
+	});
+};
+
+
+</script>
+
+Country : <select id='sel_countries'></select> <BR>
+	
+State : <select id='sel_states'></select> <BR>
+	
+City : <select id='sel_cities'></select>
