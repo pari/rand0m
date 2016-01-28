@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+<id>com.cigniti.diary</id>
+<name>Today</name>
+<version>1.0</version>
+<publisher>cigniti</publisher>
+<url>http://www.cigniti.com</url>
+<description>Today is a Simple Diary for iPhone</description>
+<copyright>2010 by Cigniti</copyright>
+<icon>default_app_logo.png</icon>
+    <persistent-wifi>false</persistent-wifi>
+    <prerendered-icon>false</prerendered-icon>
+    <statusbar-style>default</statusbar-style>
+    <statusbar-hidden>false</statusbar-hidden>
+    <analytics>true</analytics>
+<guid>7dcabbcc-b674-490d-bac7-65b4f5ff9f2a</guid>
+</ti:app>

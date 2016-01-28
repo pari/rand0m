@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+<id>com.cigniti.simplediary</id>
+<name>Simple Diary</name>
+<version>1.0</version>
+<publisher>pari</publisher>
+<url>http://cigniti.com</url>
+<description>No description provided</description>
+<copyright>2010 by pari</copyright>
+<icon>default_app_logo.png</icon>
+    <persistent-wifi>false</persistent-wifi>
+    <prerendered-icon>false</prerendered-icon>
+    <statusbar-style>default</statusbar-style>
+    <statusbar-hidden>false</statusbar-hidden>
+    <fullscreen>false</fullscreen>
+    <navbar-hidden>false</navbar-hidden>
+    <analytics>true</analytics>
+<guid>f85a1d0a-1d47-4d5d-925a-93087e6f09d1</guid>
+</ti:app>
