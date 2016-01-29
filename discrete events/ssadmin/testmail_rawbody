@@ -1,0 +1,57 @@
+From - Sat Dec 19 00:23:33 2009
+X-Account-Key: account5
+X-UIDL: 1261161705365.139704117016912.56a.dilbert
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00400000
+X-Mozilla-Keys:                                                                                 
+Received: from mail-yx0-f193.google.com ([209.85.210.193]:43551)
+	by centerlimit.com with [XMail 1.26 ESMTP Server]
+	id <S2343> for <notes_navrosh@discreteevents.com> from <navrosh@gmail.com>;
+	Fri, 18 Dec 2009 18:41:45 -0000
+Received: by yxe31 with SMTP id 31so3393075yxe.21
+        for <notes_navrosh@discreteevents.com>; Fri, 18 Dec 2009 10:39:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=gamma;
+        h=domainkey-signature:received:received:x-rim-org-msg-ref-id
+         :return-receipt-to:message-id:content-transfer-encoding:reply-to
+         :x-priority:sensitivity:importance:to:subject:from:date:content-type
+         :mime-version;
+        bh=WOO9wPnkfHAIOv7gl9+VRGe87KH9Nd2vLfmrvuMCwXw=;
+        b=DahkTQjLhsHkyxQ0lZNz/x3Iz9GnY0wNvRPoZPkbyjxr5l5ys50R3HmhEk6pNLIOv/
+         OT2zBcdvX4hdpRNGY7n7NfpTfWJ2MmSqWuWY8Eghdsu4TePjNt4FXQbC/R2KaogmP7fI
+         3teih/d0UGvL7UunZNTF5NFDowBgDumWu2jb8=
+DomainKey-Signature: a=rsa-sha1; c=nofws;
+        d=gmail.com; s=gamma;
+        h=x-rim-org-msg-ref-id:return-receipt-to:message-id
+         :content-transfer-encoding:reply-to:x-priority:sensitivity
+         :importance:to:subject:from:date:content-type:mime-version;
+        b=SLZ7SKVp5+JCXQbwoMAYip2nEZGhTNxqO8voA8utb7egLFJfwkwFZpwyIUDqOmTG8v
+         pKeKMGxgh5/4uAkIp+oxuGc/RrmDlVae1MbDpiLzIszTucL1O6nKVNwj94BX2LsZT+iG
+         +pk74zWFv12rX8KIW+8hrkRPvN1f233cXUcvE=
+Received: by 10.101.133.39 with SMTP id k39mr6654989ann.190.1261161548449;
+        Fri, 18 Dec 2009 10:39:08 -0800 (PST)
+Return-Path: <navrosh@gmail.com>
+Received: from bda053.bisx.produk.on.blackberry (bda-216-9-253-181.bise.eu.blackberry.com [216.9.253.181])
+        by mx.google.com with ESMTPS id 8sm1453973yxg.24.2009.12.18.10.39.06
+        (version=SSLv3 cipher=RC4-MD5);
+        Fri, 18 Dec 2009 10:39:07 -0800 (PST)
+X-rim-org-msg-ref-id: 1244528439
+Return-Receipt-To: navrosh@gmail.com
+Message-ID: <1244528439-1261161543-cardhu_decombobulator_blackberry.rim.net-1719776639-@bda032.bisx.produk.on.blackberry>
+Content-Transfer-Encoding: base64
+Reply-To: navrosh@gmail.com
+X-Priority: Normal
+Sensitivity: Normal
+Importance: Normal
+To: notes_navrosh@discreteevents.com
+Subject: Testing note
+From: navrosh@gmail.com
+Date: Fri, 18 Dec 2009 18:38:05 +0000
+Content-Type: text/plain; charset="Windows-1252"
+MIME-Version: 1.0
+
+VGhpcyBpcyBhIHRlc3Rpbmcgbm90ZSBmcm9tIG15IGJsYWNrIGJlcnJ5DQpTZW50IGZyb20gQmxh
+Y2tCZXJyea4gb24gQWlydGVs
+
+
+
